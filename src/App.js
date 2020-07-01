@@ -5,7 +5,8 @@ import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 
 
 function App() {
-  const [value, setValue] = useState()
+  const [setValue] = useState()
+  var value = window.currentPhone
   return (
     <div>
       <div class="cfw-sg-container cfw-input-wrap-row form-row">
