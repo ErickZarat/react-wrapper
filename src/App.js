@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import 'react-phone-number-input/style.css'
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 
-
-
 function App() {
-  const [setValue] = useState()
-  var value = window.currentPhone
+  const [value, setValue] = useState(window.currentPhone);
+
   return (
     <div>
       <div class="cfw-sg-container cfw-input-wrap-row form-row">
