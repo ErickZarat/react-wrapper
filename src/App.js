@@ -4,14 +4,12 @@ import PhoneInput, { isValidPhoneNumber, getCountryCallingCode } from 'react-pho
 
 function isPhoneValid(phone, country) {
   let countryCode = getCountryCallingCode(country)
-  console.log(countryCode + " " + country)
   if (!phone.includes(countryCode)) {
     phone = "+" + countryCode + phone
   }
   return isValidPhoneNumber(phone)
 }
 
-window.currentPhone = "5478 8800"
 function App() {
   const [phone, setPhone] = useState(window.currentPhone);
   const [country, setCountry] = useState("GT");
