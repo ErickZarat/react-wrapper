@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css'
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
+import PhoneInput, { isValidPhoneNumber, getCountryCallingCode } from 'react-phone-number-input'
 
+function isPhoneValid(phone, country) {
+  let countryCode = getCountryCallingCode(country)
+  console.log(countryCode + " " + country)
+  if (!phone.includes(countryCode)) {
+    phone = "+" + countryCode + phone
+  }
+  return isValidPhoneNumber(phone)
+}
+
+window.currentPhone = "5478 8800"
 function App() {
-  const [value, setValue] = useState(window.currentPhone);
+  const [phone, setPhone] = useState(window.currentPhone);
+  const [country, setCountry] = useState("GT");
 
   return (
     <div>
@@ -14,8 +25,10 @@ function App() {
             <PhoneInput
               placeholder="Número de teléfono"
               defaultCountry="GT"
-              value={value}
-              onChange={setValue}
+              country={country}
+              onCountryChange={setCountry}
+              value={phone}
+              onChange={setPhone}
               type="tel" 
               field_key="phone" 
               class="input-text garlic-auto-save parsley-success" 
@@ -26,13 +39,13 @@ function App() {
               autocomplete="tel" 
               required="" 
               data-parsley-id="36"/>
-            <p id="kemik-error-msg"></p>
+            <p id="kemik-error-msg"/>
           </div>
         </div>
       </div>
 
       <input 
-        value={isValidPhoneNumber(value)} 
+        value={isPhoneValid(phone, country)}
         type="hidden"
         id="isPhoneValid"/>
     </div>
